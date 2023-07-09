@@ -19,5 +19,19 @@ namespace BulkyWeb.Controllers
 
             return View(objCategoryList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CategoryModel obj)
+        {
+            _context.Categories.Add(obj);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Category");
+        }
     }
 }
