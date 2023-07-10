@@ -29,10 +29,10 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(CategoryModel obj)
         {
-            //if (obj.Name != null && obj.Name.Equals(obj.DisplayOrder.ToString()))
-            //{
-            //    ModelState.AddModelError("name", "The name can not match with the Display Order");
-            //}
+            if (obj.Name != null && obj.Name.Equals(obj.DisplayOrder.ToString()))
+            {
+                ModelState.AddModelError("name", "The Name can not match with the Display Order");
+            }
 
             if (ModelState.IsValid)
             {
