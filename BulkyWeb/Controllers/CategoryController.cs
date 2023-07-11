@@ -66,20 +66,15 @@ namespace BulkyWeb.Controllers
 		[HttpPost]
 		public IActionResult Edit(CategoryModel obj)
 		{
-			if (obj.Name != null && obj.Name.Equals(obj.DisplayOrder.ToString()))
-			{
-				ModelState.AddModelError("name", "The Name can not match with the Display Order");
-			}
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(obj);
+                _context.SaveChanges();
 
-			if (ModelState.IsValid)
-			{
-				_context.Categories.Add(obj);
-				_context.SaveChanges();
+                return RedirectToAction("Index", "Category");
+            }
 
-				return RedirectToAction("Index", "Category");
-			}
-
-			return View();
+            return View();
 		}
 	}
 }
