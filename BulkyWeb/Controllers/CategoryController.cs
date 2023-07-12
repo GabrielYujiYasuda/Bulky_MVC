@@ -25,7 +25,7 @@ namespace BulkyWeb.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult Create(CategoryModel obj)
         {
@@ -66,7 +66,7 @@ namespace BulkyWeb.Controllers
 		[HttpPost]
 		public IActionResult Edit(CategoryModel obj)
 		{
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
                 _context.Categories.Update(obj);
                 _context.SaveChanges();
@@ -75,6 +75,41 @@ namespace BulkyWeb.Controllers
             }
 
             return View();
+		}
+
+		public IActionResult Delete(int? id)
+		{
+
+			if (id == null || id == 0)
+			{
+				return NotFound();
+			}
+
+			CategoryModel? categoryChosen = _context.Categories.FirstOrDefault(categ => categ.Id == id);
+
+			if (categoryChosen == null)
+			{
+				return NotFound();
+			}
+
+			return View(categoryChosen);
+		}
+
+
+		[HttpPost, ActionName("Delete")]
+		public IActionResult DeletePOST(int? id)
+		{
+            CategoryModel? category = _context.Categories.Find(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categories.Remove(category);
+			_context.SaveChanges();
+
+            return RedirectToAction("Index");
 		}
 	}
 }
