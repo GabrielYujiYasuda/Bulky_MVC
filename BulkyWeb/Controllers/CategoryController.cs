@@ -49,7 +49,6 @@ namespace BulkyWeb.Controllers
 
 		public IActionResult Edit(int? id)
 		{
-
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -83,7 +82,6 @@ namespace BulkyWeb.Controllers
 
 		public IActionResult Delete(int? id)
 		{
-
 			if (id == null || id == 0)
 			{
 				return NotFound();
