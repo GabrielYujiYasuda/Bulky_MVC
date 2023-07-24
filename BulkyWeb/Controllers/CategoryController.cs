@@ -1,5 +1,5 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using Bulky.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -96,7 +96,6 @@ namespace BulkyWeb.Controllers
 
 			return View(categoryChosen);
 		}
-
 
 		[HttpPost, ActionName("Delete")]
 		public IActionResult DeletePOST(int? id)
